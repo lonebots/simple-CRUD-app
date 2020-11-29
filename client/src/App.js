@@ -30,11 +30,12 @@ function App() {
   };
 
 //delete review function
+
 const deleteReview=(movie)=>{
-  Axios.delete(`http:/localhost:3001/api/delete/${movie}`);
+  const delurl =
+    "http://localhost:3001/api/delete/" +movie;
+    Axios.delete(delurl);//back quote to pass the movie name
 }
-
-
 
 
 
