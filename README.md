@@ -4,5 +4,5 @@
     * U -> Update
     * D -> Delete
 <br>
-**Front end : REACTjs <br>
-   Back End  : Mysql**  <br>
+**Front end : REACTjs** <br>
+**Back End  : Mysql**  <br>
