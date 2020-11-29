@@ -59,6 +59,24 @@ app.delete('/api/delete/:movieName',(req,res)=>{
     });
 })
 
+
+//update
+app.put("/api/update",(req,res)=>{
+    //variables
+    const name =req.body.movieName;
+    const review = req.body.movieReview;
+
+    //query
+    const sqlUpdate =
+      "UPDATE  movie_reviews SET movieReview= ? WHERE movieName= ? ;";
+
+    //dbupdate
+    db.query(sqlUpdate,[review,name],(err,result)=>{
+        if (err) console.log(err);
+    })
+})
+
+
 //listening to port 3001
 app.listen(3001, (err) => {
     if (err) throw err;
