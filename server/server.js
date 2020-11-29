@@ -20,18 +20,44 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json())//issue or err
 
+//post request for inserting the data
 app.post('/api/insert', (req, res) => {
     //variables
     const movieName = req.body.movieName;
     const movieReview = req.body.movieReview;
     
-    //qyery
-    const sqlInsert = "INSERT INTO movie_reviews (movieName, movieReview) VALUES (?,?)"
+    //query
+    const sqlInsert = "INSERT INTO movie_reviews (movieName, movieReview) VALUES (?,?);"
     db.query(sqlInsert, [movieName, movieReview], (err, result) => {
-        console.log(err);
+        console.log(result);
     })
 })
 
+
+//get request for taking the data
+app.get('/api/get',(req,res)=>{
+    //query 
+    const sqlSelect="SELECT * FROM movie_reviews;"
+    db.query(sqlSelect,(err,result)=>{
+        res.send(result);
+    })
+
+})
+
+//delete request
+app.delete('/api/delete/:movieName',(req,res)=>{
+    //movie name variable
+    const name=req.params.movieName;
+
+    //query
+    const sqlDelete="DELETE FROM movie_reviews WHERE movieName= ? ;"
+
+    //
+    db.query(sqlDelete,name, (err,result)=>{
+        if (err )console.log(err);
+        else console.log(result);
+    });
+})
 
 //listening to port 3001
 app.listen(3001, (err) => {
