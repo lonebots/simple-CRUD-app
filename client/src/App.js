@@ -11,8 +11,11 @@ function App() {
 
 
   const submitReview = () => {
-    Axios.post('http://localhost:3001/api/insert', { movieName: movieName, movieReview: review, }).then(() => {
-      alert('success submit');
+    Axios.post('http://localhost:3001/api/insert',{
+      movieName:movieName,
+      movieReview:review,
+    }).then(()=>{
+      alert('successful insert!');
     })
   }
 
