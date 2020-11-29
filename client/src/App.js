@@ -7,7 +7,7 @@ function App() {
   const [movieName, setmovieName] = useState("");
   const [review, setReview] = useState("");
   const [movieReviewList, setmovieReviewList] = useState([]); //empty list
-  const [newReview, setnewReview]=useState('');
+  const [newReview, setnewReview] = useState("");
   //useEffect -display all the movie review
   useEffect(() => {
     Axios.get("http://localhost:3001/api/get").then((response) => {
@@ -29,21 +29,19 @@ function App() {
     ]);
   };
 
-//delete review function
+  //delete review function
   const deleteReview = (movie) => {
     const delurl = "http://localhost:3001/api/delete/" + movie;
     Axios.delete(delurl); //back quote to pass the movie name
   };
 
-
-//update review
- const updateReview =(movie)=>{
- Axios.put("http://localhost:3001/api/update", {
-   movieName: movie,
-   movieReview: newReview,
- }).then( setnewReview(""))
-
- }
+  //update review
+  const updateReview = (movie) => {
+    Axios.put("http://localhost:3001/api/update", {
+      movieName: movie,
+      movieReview: newReview,
+    }).then(setnewReview(""));
+  };
 
   return (
     <div className="App">
@@ -69,7 +67,7 @@ function App() {
 
         {movieReviewList.map((val) => {
           return (
-            <div className="card">
+            <div className="card" key={val.id}>
               <h1>{val.movieName} </h1>
               <p>{val.movieReview}</p>
               <button
@@ -79,10 +77,20 @@ function App() {
               >
                 Delete
               </button>
-              <input id="updateInput" type="text"  onChange={(e)=>{
-                setnewReview(e.target.value);
-              }}/>
-              <button onClick={()=>{updateReview(val.movieName)}} >Update</button>
+              <input
+                id={val.id}
+                type="text"
+                onChange={(e) => {
+                  setnewReview(e.target.value);
+                }}
+              />
+              <button
+                onClick={() => {
+                  updateReview(val.movieName);
+                }}
+              >
+                Update
+              </button>
             </div>
           );
         })}
