@@ -22,7 +22,7 @@ function App() {
       movieName: movieName,
       movieReview: review,
     });
-    //alert('successful insert!');
+    alert('successful insert!');
     setmovieReviewList([
       ...movieReviewList,
       { movieName: movieName, movieReview: review },
