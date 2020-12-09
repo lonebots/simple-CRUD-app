@@ -6,4 +6,5 @@
 <br>
  
  **Front end : REACTjs** <br/>
- **Back End  : Mysql**  <br>
+ **Back End  : Nodejs**  <br/>
+ **Database : MySQL**
